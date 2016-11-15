@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Сервис Учета Студентов</title>
+    <meta name="description"
+          value="Система Учета Студентов Начального Заведения" />
+
+    <!-- Include Styles  -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+
+  </head>
+
+  <body>
+
+    <!-- Start Container -->
+    <div class="container">
+
+
+        <!-- Logo -->
+        <div class="col-xs-12">
+          <h1>Форма редактирования Студента</h1>
+        </div>
+
+        <form tole="form" class="form-horizontal">
+            <div class="form-group">
+              <label for="name" class="control-label col-sm-2">Имя*</label>
+                <div class="col-sm-3">
+                  <input name="name" type="text" class="form-control" placeholder="Имя"/>
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="patronymic" class="control-label col-sm-2">Отчество</label>
+                <div class="col-sm-3">
+                  <input name="patronymic" type="text" class="form-control" placeholder="Отчество"/>
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="surname" class="control-label col-sm-2">Фамилия*</label>
+                <div class="col-sm-3">
+                  <input name="surname" type="text" class="form-control" placeholder="Фамилия"/>
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="ticket" class="control-label col-sm-2">№ Билета*</label>
+                <div class="col-sm-3">
+                  <input name="ticket" type="number" class="form-control" placeholder="№ Билета"/>
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="date" class="control-label col-sm-2">Дата рождения</label>
+                <div class="col-sm-3">
+                  <input name="date" type="date" class="form-control" placeholder="Дата рождения"/>
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="file" class="control-label col-sm-2">Фото</label>
+                <div class="col-sm-3">
+                  <input name="file" type="file" class="form-control" placeholder="Фото"/>
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="file" class="control-label col-sm-2">Группа</label>
+                <div class="col-sm-3">
+                  <select class="form-control">
+                    <option>МтМ - 21</option>
+                    <option>МтМ - 22</option>
+                  </select>
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="comment" class="control-label col-sm-2">Дополнительные Заметки</label>
+                <div class="col-sm-3">
+                  <textarea name="comment" class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+            <div id="mybutton" class="col-sm-offset-2 col-sm-10">
+                &nbsp;
+            </div>
+            <div class="form-group" id="mybutton">
+               <div class="col-sm-offset-2 col-sm-10">
+                  <input  type="submit" class="btn btn-primary" class="form-control" value="Сохранить"/>
+                  <input  type="button" class="btn" class="form-control" value="Отменить"/>
+               </div>
+            </div>
+        </form>
+
+      <!-- Start Footer -->
+
+      <!-- End Footer  -->
+
+    </div>
+    <!-- End Container -->
+
+
+    <!-- Javascript Section -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+  </body>
+
+</html>

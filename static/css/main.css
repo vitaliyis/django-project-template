@@ -26,3 +26,9 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 30px;
   color: #555555;
 }
+#my-table {
+  border: 1px solid #dddddd;
+}
+#mybutton {
+  background-color: #dddddd;
+}
