@@ -15,9 +15,11 @@ Including another URLconf
 """
 
 from django.conf.urls import include, url
+from django.conf.urls.static import static
 from django.contrib import admin
 #from students import views
 from students.views import students, groups, visits
+from .settings import MEDIA_ROOT, DEBUG, MEDIA_URL
 
 urlpatterns = [
     # Students urls
@@ -37,6 +39,10 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
 ]
+if DEBUG:
+    # serve files from media folder
+    urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
+       # url(r'media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': MEDIA_ROOT})
 
 #urlpatterns = patterns('',
 #    # Students urls
