@@ -1,0 +1,57 @@
+{% extends "students/base.html" %}
+
+{% load static from staticfiles %}
+
+{% block meta_title %}Добавить Студента{% endblock meta_title %}
+
+{% block title %}Добавить Студента{% endblock title %}
+
+{% block content %}
+
+    <form action="{% url 'students_add' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+      <div>
+        <label for="first_name">Имя*</label>
+        <input type="text" value="" name="first_name" id="first_name" />
+      </div>
+      <div>
+        <label for="last_name">Фамилия*</label>
+        <input type="text" value="" name="last_name" id="last_name" />
+      </div>
+      <div>
+        <label for="middle_name">Отчество</label>
+        <input type="text" value="" name="middle_name" id="middle_name" />
+      </div>
+      <div>
+        <label for="birthday">Дата Рождения*</label>
+        <input type="text" value="" name="birthday" id="birthday" placeholder="Напр. 1984-12-30" />
+      </div>
+      <div>
+        <label for="photo">Фото</label>
+        <input type="file" value="" name="photo" id="photo" />
+      </div>
+      <div>
+        <label for="ticket">Билет*</label>
+        <input type="text" value="" name="ticket" id="ticket" />
+      </div>
+      <div>
+        <label for="student_group">Группа*</label>
+        <select name="student_group" id="student_group">
+          <option value="">Выберите группу</option>
+          {%  for group in groups %}
+          <option value="{{ group.id }}">{{ group.title }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div>
+        <label for="notes">Дополнительные Заметки</label>
+        <textarea name="notes" id="notes" class="form-control"></textarea>
+      </div>
+      <div>
+        <input type="submit" value="Добавить" name="add_button" />
+        <button type="submit" name="cancel_button">Отменить</button>
+      </div>
+    </form>
+
+
+{% endblock content %}
