@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from datetime import datetime
 
 from ..models import Student, Group
 
@@ -65,6 +66,7 @@ def students_add(request):
                     'notes': request.POST.get('notes')}
 
             # validate user input
+            middle_name = request.POST.get('middle_name').strip()
             first_name = request.POST.get('first_name', '').strip()
             if not first_name:
                 errors['first_name'] = u"Имя должно быть обязательно"
@@ -81,7 +83,12 @@ def students_add(request):
             if not birthday:
                 errors['birthday'] = u"Дата рождения должна быть обязательно"
             else:
-                data['birthday'] = birthday
+                try:
+                    datetime.strptime(birthday, '%Y-%m-%d')
+                except Exception:
+                    errors['birthday'] = u"Введите корректный формат даты (напр. 1984-12-30)"
+                else:
+                    data['birthday'] = birthday
 
             ticket = request.POST.get('ticket', '').strip()
             if not ticket:
@@ -93,7 +100,11 @@ def students_add(request):
             if not student_group:
                 errors['student_group'] = u"Выберите группу для студента"
             else:
-                data['student_group'] = Group.objects.get(pk=student_group)
+                groups = Group.objects.filter(pk=student_group)
+                if len(groups) != 1:
+                    errors['student_group'] = u"Выберите корректную группу"
+                else:
+                    data['student_group'] = groups[0]
 
             photo = request.FILES.get('photo')
             if photo:
@@ -107,7 +118,7 @@ def students_add(request):
                 student.save()
 
                 # redirect user to students list
-                return HttpResponseRedirect(reverse('home'))
+                return HttpResponseRedirect(u'%s?status_message=Студент %s %s %s успешно добавлен!' % (reverse('home'), first_name, middle_name, last_name))
 
             else:
                 # render form with errors and previous user input
@@ -116,7 +127,7 @@ def students_add(request):
                               'errors': errors})
         elif request.POST.get('cancel_button') is not None:
             # redirect to home page on cancel button
-            return HttpResponseRedirect(reverse('home'))
+            return HttpResponseRedirect(u'%s?status_message=Добавление студента отменено!' %reverse('home'))
     else:
         # initial form render
         return render(request, 'students/students_add.html',
